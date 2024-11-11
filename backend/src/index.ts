@@ -43,7 +43,7 @@ app.post('/send-email', (req: Request, res: Response) => {
       }
     }
   );
-  res.send('message send successfully');
+  res.json({ message: 'Email sent successfully!' });
 });
 app.listen(port, () => {
   console.log('listening on port  ' + port);

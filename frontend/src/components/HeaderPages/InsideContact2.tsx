@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 export const InsideContact = () => {
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('❓');
   const [formData, setFormData] = useState({
     to: '',
     subject: '',
@@ -16,7 +16,6 @@ export const InsideContact = () => {
 
   const handleSubmitFormData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('sending');
     try {
       const response = await fetch('http://localhost:4000/send-email', {
         method: 'POST',
@@ -26,13 +25,24 @@ export const InsideContact = () => {
         body: JSON.stringify(formData),
       });
       const result = await response.json();
-      console.log(result);
-      setStatus(result.message);
+      console.log('before status ', result);
+      setStatus('✅');
+      setFormData({
+        to: '',
+        subject: '',
+        text: '',
+      });
+      console.log('after status', result);
     } catch (error) {
-      console.log(error.message);
+      if (error instanceof Error) {
+        console.log(error.message);
+        setStatus(error.message);
+      } else {
+        console.log('An unknown error occurred');
+        setStatus('else block is executed');
+      }
     }
   };
-  console.log(JSON.stringify(formData));
   return (
     <div className="p-4 mx-auto max-w-xl bg-gray-700 font-[sans-serif] mt-2">
       <h1 className="text-3xl font-extrabold text-center">Contact us</h1>
@@ -66,7 +76,7 @@ export const InsideContact = () => {
         >
           Send
         </button>
-        {'send email status is===> ' + status}
+        {'Status ' + status}
       </form>
     </div>
   );
