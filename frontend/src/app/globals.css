@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* my custome css */
+.old-scale {
+  scale: 0.9;
+}
+.scale-over:hover {
+  scale: 1;
+}
+
+/* .get-in-touch  */
+@media (max-width: 640px) {
+  .get-in-touch {
+    flex-direction: column;
+    background-color: lightcoral;
+    width: 300px;
+    border-radius: 10px;
+    margin: auto;
+  }
+  #page2 {
+    width: 95%;
+  }
+  #menuItems {
+    display: none;
+  }
+  #menuButton {
+    display: block;
+  }
+  #nav {
+    height: 50px;
+    margin: 10px;
+  }
+}
