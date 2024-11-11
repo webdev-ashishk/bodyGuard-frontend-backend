@@ -2,12 +2,12 @@ import cors from 'cors';
 import express, { Request, Response } from 'express';
 import nodemailer, { SentMessageInfo } from 'nodemailer';
 const app = express();
-const port = 3000;
-
+const port = 4000;
+//
 // Configure CORS
 app.use(
   cors({
-    origin: 'http://localhost:5173', // Allow only your frontend
+    origin: 'http://localhost:3000', // Allow only your frontend
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'], // Allow 'Content-Type' header
   })
@@ -43,7 +43,7 @@ app.post('/send-email', (req: Request, res: Response) => {
       }
     }
   );
-  res.send('you are the /send route');
+  res.send('message send successfully');
 });
 app.listen(port, () => {
   console.log('listening on port  ' + port);
